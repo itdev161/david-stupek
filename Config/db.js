@@ -13,8 +13,8 @@ const connectDatabase = async () => {
         console.log('You connected to the MongoDB David :D');
     } catch (error){
         console.error(error.message);
-
-        // Exit with failure code
+    
+        // Exit with failure code$ lsof -i tcp:3000
         process.exit(1);
     }
 };
