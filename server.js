@@ -32,7 +32,7 @@ app.post('/api/users',
         if(!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         } else {
-        res.send(req.body);
+           return res.send(req.body);
         }  
     }
  );
