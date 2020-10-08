@@ -1,6 +1,7 @@
-import express from 'express'
-import connectDatabase from './config/db'
+import express from 'express';
+import connectDatabase from './config/db';
 import { check, validationResult } from 'express-validator';
+import cors from 'cors'
 
 // turn on express server
 const app = express();
@@ -8,6 +9,11 @@ connectDatabase();
 
 //configure Middleware
 app.use(express.json({ extended: false}));
+app.use(
+    cors({
+        origin: 'http://localhost:3000'
+    })
+);
 
 //API endpoints
 /*
@@ -32,11 +38,12 @@ app.post('/api/users',
         if(!errors.isEmpty()) {
             return res.status(422).json({ errors: errors.array() });
         } else {
-        res.send(req.body);
+           return res.send(req.body);
         }  
     }
  );
 
 //Connection listner
-app.listen(3000, () => console.log('Express server running on port 3k'));
+const port = 5000;
+app.listen(port, () => console.log(`Express server running on port ${port}`));
 
