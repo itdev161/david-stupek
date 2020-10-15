@@ -3,6 +3,8 @@ import connectDatabase from './config/db';
 import { check, validationResult } from 'express-validator';
 import cors from 'cors';
 import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
+import config from 'config';
 import User from './models/users'
 
 // turn on express server
@@ -61,11 +63,27 @@ app.post('/api/users',
             const salt = await bcrypt.genSalt(10);
             user.password = await bcrypt.hash(password, salt);
 
-            // Save to the db and return
+            // Save to the db 
             await user.save();
-            res.send('User successfully registered');
-            } catch (error){
-                res.status(500).send('Server error 500');
+
+            //Generate and return a JWT token
+            const payload = {
+                user: {
+                    id: user.id
+                }
+            };
+
+            jwt.sign(
+                payload,
+                config.get('jwtSecret'),
+                {expiresIn: '10hr'},
+                (err, token) => {
+                    if (err) throw err;
+                    res.json({ token: token });
+                }
+            ); 
+                } catch (error) {
+                res.status(500).send('Server error');
             }
         }  
     }
