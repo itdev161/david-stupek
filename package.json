@@ -14,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/itdev161/david-stupek.git"
   },
-  "author": "",
+  "author": "David Stupek",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/itdev161/david-stupek/issues"
@@ -27,11 +27,12 @@
     "esm": "^3.2.25",
     "express": "^4.17.1",
     "express-validator": "^6.6.1",
+    "jsonwebtoken": "^8.5.1",
     "mongodb": "^3.6.2",
-    "mongoose": "^5.10.7"
+    "mongoose": "^5.10.9"
   },
   "devDependencies": {
     "concurrently": "^5.3.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.5"
   }
 }
